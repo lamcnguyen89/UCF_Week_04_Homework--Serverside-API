@@ -15,18 +15,49 @@
 </head>
 <body>
 
-    <header>
-        <h1>Weather Dashboard</h1>
-    </header>
+    <!--Title Heading-->
+    <div class="bg-dark">
+        <header class="container">
+            <h1 class="text-center text-white">Weather Dashboard</h1>
+        </header>
+    </div>
 
-
+     <!--This column with the Id=search will contain the search bar for searching for cities. Once a city is selected, it will show up as a button below the search bar-->
     <div class="container">
 
         <div class="row">
 
-            <!--This column with the Id=search will contain the search bar for searching for cities. Once a city is selected, it will show up as a button below the search bar-->
+           
             <div id="search" class=col-sm-4>
+
+                <h2>Search for a City</h2>
+
+                <div class="input-group">
+
+                    <input 
+                        id="searchBar" 
+                        type="text"
+                        class="form-control input-group-append"
+                        placeholder= "Input city here"
+                    ></input>
+                    <button
+                        id="searchBtn"
+                        class="btn btn-primary"
+                        type="button"
+                    >
+                        <i class="far fa-search">Submit</i>
+                    </button>
+
+                </div>
+
+                <!--This part of the code creates the card section on which to append a card body for each city-->
+                <div class="cityCards">
+                    <ul class="list-group list-group-flush list">
+                    </ul>
+                    
+                </div>
             </div>
+
             <!--This column with the Id=weatherdisplay will contain the weather data that will be retrieved from the Open Weather API.-->
                 <!--Within this column there will be two subrows: The first subrow will display the current day weather forecast. The second row will contain the 5 day weather forecast-->
             <div id="weatherDisplay" class=col-sm-8>
@@ -40,7 +71,7 @@
 
                 <!--This row just contains the header title for the five day weather forecast-->
                 <div class="row">
-                    <h5>5-Day Forecast</h5>
+                    <h5 id="fiveDayHeader" class="hide">5-Day Forecast</h5>
                 </div>
                 <!--This row will contain the 5 day weather forecast. Within this row will be one column each per day. So there will be five small columns within this row. -->
                     <!--I might use jQuery to make a loop to pull from the data and generate the columns... If I can figure this out-->
