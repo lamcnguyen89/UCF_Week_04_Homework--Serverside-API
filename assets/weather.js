@@ -1,7 +1,6 @@
-
 // This is our API key:
 let APIKey = "aee00fff2bc5d505beb8a8f7330dfaaf";
-let date = new Date()
+
 
 
 
@@ -16,7 +15,6 @@ let date = new Date()
 //         }
 //     });
 
-
 //   // Create the function that occurs once the Search Button is clicked.
 //   $("#searchBtn").on("click", function(){
 
@@ -24,17 +22,14 @@ let date = new Date()
 //                 $("#fiveDayHeader").addClass('show');
 
 //                 // Stores the city name that the user entered into a variable used to retrieve weather data for that particular city:
-//                 cityName = $("#searchBar").val();
+//                 let cityName = $("#searchBar").val();
 //                 // Clear the search bar:
 //                 $("#searchBar").val("");
 
-//                 listCities(cityName);
-//                 currentForecast(cityName);
-//                 weeklyForecast(cityName);  
-
+               
 //     });
 
-let cityName = "Orlando";
+// cityName= "Orlando";
 
 // The URL that contains the current weather conditions:
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
@@ -47,9 +42,9 @@ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName +
     // We store all of the retrieved data inside of an object called "response":
     .then(function (response) {
         // Function that displays the current day weather conditions:
-        currentForecast(response);
+        currentForecast(cityName);
         //Function that dispplays the weather conditions for the next 5 days: 
-        weeklyForecast(response);
+        weeklyForecast(cityName);
         //Function that lists out the cities you've searched for below the search box:
         listCities();
     });
@@ -65,9 +60,11 @@ function listCities() {
 
 
 // Function to display current weather conditions:
-function currentForecast(response) {
+function currentForecast(cityName) {
 
             console.log("Current Weather Object: " + JSON.stringify(response));
+
+            let date = new Date()
 
             // Convert the temperature in Kelvin to Fahrenheit:
             var tempF = (response.main.temp - 273.15) * 1.80 + 32;
@@ -117,7 +114,7 @@ var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityNam
     console.log("5 Day Forecast URL: " + fiveDayURL);
 
 // In this section we will build the 5 day weather forecast section:
-function weeklyForecast() {
+function weeklyForecast(cityName) {
 
         // Now we do an Ajax call to turn the 5 day weather data into an object that can be used by the webpage.
         $.ajax({
@@ -129,8 +126,9 @@ function weeklyForecast() {
 
             console.log("First Object stored the the 5 Day Forecast Array: " + JSON.stringify(response.list[0]));
 
-            //We create a loop to pull data from each day of the 5-day forecast and insert each day in its own individual card.
-            for (var i = 2; i < response.list.length; i+= 8) {
+            // We create a loop to pull data from each day of the 5-day forecast and insert each day in its own individual card.
+            // Start the loop at i=4 so that weather at 3 pm will be displayed. Loop in increments of 8 to allow 24 hours to pass between each forecast since each increment of i equals 3 hours since the response object displays weather every 3 hours.
+            for (var i = 4; i < response.list.length; i+=8) {
 
                 var currentDay=response.list[i];
                 console.log("5 Day Forecast: " + JSON.stringify(currentDay));
@@ -171,9 +169,16 @@ function weeklyForecast() {
 
 };
 
+// Variables to create Search Button. I've given up trying to use jQuery for this part:
+var inputEl = document.getElementById("#searchBar");
+var searchEl = document.getElementById("#searchBtn");
 
-
+searchEl.addEventListener("click", function() {
+    const cityName = inputEl.value;
+    return;  
+});
         
+
 
 
 

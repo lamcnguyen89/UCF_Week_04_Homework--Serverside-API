@@ -28,25 +28,28 @@
         <div class="row">
 
            
-            <div id="search" class=col-sm-3>
+            <div class=col-sm-3>
 
-                <h2>Search for a City</h2>
+                <h4>Search for a City</h4>
 
                 <div class="input-group">
 
                     <input 
                         id="searchBar" 
                         type="text"
-                        class="form-control input-group-append"
+                        class="form-control"
                         placeholder= "Input city here"
-                    ></input>
-                    <button
-                        id="searchBtn"
-                        class="btn btn-primary"
-                        type="button"
                     >
-                        <i class="far fa-search">Search</i>
-                    </button>
+                    <div class="input-group-append">
+                        <button
+                            id="searchBtn"
+                            class="btn btn-primary"
+                            type="button"
+                            
+                        >
+                            <i class="far fa-search">Search</i>
+                        </button>
+                    </div>
 
                 </div>
 
@@ -68,7 +71,7 @@
 
                 <div class="row">
                     <!--This row just contains the header title for the five day weather forecast-->
-                    <h5 id="fiveDayHeader" class="hide">5-Day Forecast</h5>
+                    <h4 id="fiveDayHeader" class="hide">5-Day Forecast: Displays weather at 3pm for each day</h4>
                 </div>
                     
                 <div id="weeklyForecast" class="row">
