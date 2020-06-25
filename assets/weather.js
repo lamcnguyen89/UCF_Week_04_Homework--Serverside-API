@@ -81,14 +81,13 @@ function currentForecast(response) {
 
             console.log(" UV Index URL: " + queryUVURL);
             
-            // The return function makes something available outside of a function. But anything underneath the return will not be available.
-            //Call ajax to retrieve the UV data from the server and return it outside the function for use globally.
+            // Get the UV index data from the external server and turn it into an object that is usable by JavaScript.
             $.ajax({
                 url: queryUVURL,
                 method: "GET"
                 })
 
-            // We store the UV data inside an object and then display the data on the webpage:
+            // We store the UV value inside an object and then display the data on the webpage:
             .then(function (response) {
                 var uv = response.value;
                 //Hook the value of the UV index to the HTML
