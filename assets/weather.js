@@ -1,29 +1,29 @@
-// The variable cityName is linked to the input from the search bar on the html.
-let cityName = $("#searchBar").val();
+// // The variable cityName is linked to the input from the search bar on the html.
+// let cityName = $("#searchBar").val();
 // This is our API key:
 let APIKey = "aee00fff2bc5d505beb8a8f7330dfaaf";
 
 
-    $("#searchBar").keypress(function(event){
+    // $("#searchBar").keypress(function(event){
         
-        if (event.keyCode === 13) {
-            event.preventDefault();
-            $("#searchBtn").click();
-        }
-    });
+    //     if (event.keyCode === 13) {
+    //         event.preventDefault();
+    //         $("#searchBtn").click();
+    //     }
+    // });
 
-// Create the function that occurs once the Search Button is clicked.
-$("#searchBtn").on("click", function(){
+// // Create the function that occurs once the Search Button is clicked.
+// $("#searchBtn").on("click", function(){
 
-                //This code makes the forecast header visible:
-                $("#fiveDayHeader").addClass('show');
+//                 //This code makes the forecast header visible:
+//                 $("#fiveDayHeader").addClass('show');
 
-                // Stores the city name that the user entered into a variable used to retrieve weather data for that particular city:
-                let cityName = $("#searchBar").val();
-                // Clear the search bar:
-                $("#searchBar").val("");
+//                 // Stores the city name that the user entered into a variable used to retrieve weather data for that particular city:
+//                 let cityName = $("#searchBar").val();
+//                 // Clear the search bar:
+//                 $("#searchBar").val("");
 
-// cityName= "Orlando";
+let cityName= "Asheville";
 
         // The URL that contains the current weather conditions:
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
@@ -43,7 +43,7 @@ $("#searchBtn").on("click", function(){
                 listCities();
             })
 
-});
+// });
 
 // Create Function that shows a list of the cities you've searched for below the search bar:
 function listCities() {
@@ -55,7 +55,7 @@ function listCities() {
 
 
 // Function to display current weather conditions:
-function currentForecast(cityName) {
+function currentForecast(response) {
 
             console.log("Current Weather Object: " + JSON.stringify(response));
 
@@ -109,7 +109,7 @@ var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityNam
     console.log("5 Day Forecast URL: " + fiveDayURL);
 
 // In this section we will build the 5 day weather forecast section:
-function weeklyForecast(cityName) {
+function weeklyForecast() {
 
         // Now we do an Ajax call to turn the 5 day weather data into an object that can be used by the webpage.
         $.ajax({
