@@ -1,54 +1,49 @@
+// The variable cityName is linked to the input from the search bar on the html.
+let cityName = $("#searchBar").val();
 // This is our API key:
 let APIKey = "aee00fff2bc5d505beb8a8f7330dfaaf";
 
 
-
-
-// // The variable cityName is linked to the input from the search bar on the html.
-    
-//     let cityName = $("#searchBar").val();
-//     $("#searchBar").keypress(function(event){
+    $("#searchBar").keypress(function(event){
         
-//         if (event.keyCode === 13) {
-//             event.preventDefault();
-//             $("#searchBtn").click();
-//         }
-//     });
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            $("#searchBtn").click();
+        }
+    });
 
-//   // Create the function that occurs once the Search Button is clicked.
-//   $("#searchBtn").on("click", function(){
+// Create the function that occurs once the Search Button is clicked.
+$("#searchBtn").on("click", function(){
 
-//                 //This code makes the forecast header visible:
-//                 $("#fiveDayHeader").addClass('show');
+                //This code makes the forecast header visible:
+                $("#fiveDayHeader").addClass('show');
 
-//                 // Stores the city name that the user entered into a variable used to retrieve weather data for that particular city:
-//                 let cityName = $("#searchBar").val();
-//                 // Clear the search bar:
-//                 $("#searchBar").val("");
-
-               
-//     });
+                // Stores the city name that the user entered into a variable used to retrieve weather data for that particular city:
+                let cityName = $("#searchBar").val();
+                // Clear the search bar:
+                $("#searchBar").val("");
 
 // cityName= "Orlando";
 
-// The URL that contains the current weather conditions:
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
-    console.log("Current Conditions Forecast URL: " + queryURL);
+        // The URL that contains the current weather conditions:
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + APIKey;
+            console.log("Current Conditions Forecast URL: " + queryURL);
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-    // We store all of the retrieved data inside of an object called "response":
-    .then(function (response) {
-        // Function that displays the current day weather conditions:
-        currentForecast(cityName);
-        //Function that dispplays the weather conditions for the next 5 days: 
-        weeklyForecast(cityName);
-        //Function that lists out the cities you've searched for below the search box:
-        listCities();
-    });
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            // We store all of the retrieved data inside of an object called "response":
+            .then(function (response) {
+                // Function that displays the current day weather conditions:
+                currentForecast(response);
+                //Function that dispplays the weather conditions for the next 5 days: 
+                weeklyForecast(response);
+                //Function that lists out the cities you've searched for below the search box:
+                listCities();
+            })
 
+});
 
 // Create Function that shows a list of the cities you've searched for below the search bar:
 function listCities() {
@@ -169,15 +164,7 @@ function weeklyForecast(cityName) {
 
 };
 
-// Variables to create Search Button. I've given up trying to use jQuery for this part:
-var inputEl = document.getElementById("#searchBar");
-var searchEl = document.getElementById("#searchBtn");
 
-searchEl.addEventListener("click", function() {
-    const cityName = inputEl.value;
-    return;  
-});
-        
 
 
 
