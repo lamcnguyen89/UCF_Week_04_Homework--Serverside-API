@@ -28,7 +28,7 @@
         <div class="row">
 
            
-            <div id="search" class=col-sm-4>
+            <div id="search" class=col-sm-3>
 
                 <h2>Search for a City</h2>
 
@@ -45,7 +45,7 @@
                         class="btn btn-primary"
                         type="button"
                     >
-                        <i class="far fa-search">Submit</i>
+                        <i class="far fa-search">Search</i>
                     </button>
 
                 </div>
@@ -60,22 +60,19 @@
 
             <!--This column with the Id=weatherdisplay will contain the weather data that will be retrieved from the Open Weather API.-->
                 <!--Within this column there will be two subrows: The first subrow will display the current day weather forecast. The second row will contain the 5 day weather forecast-->
-            <div id="weatherDisplay" class=col-sm-8>
-
-                <!--This row will only contain the current day weather.-->
-                <div class="row">
-                    <div id="currentForecast" class="col-sm-12">
-
-                    </div>
+            <div id="weatherDisplay" class=col-sm-9>
+ 
+                <div id="currentForecast" class="row">
+                    <!--This row will only contain the current day weather.-->
                 </div>
 
-                <!--This row just contains the header title for the five day weather forecast-->
                 <div class="row">
+                    <!--This row just contains the header title for the five day weather forecast-->
                     <h5 id="fiveDayHeader" class="hide">5-Day Forecast</h5>
                 </div>
-                <!--This row will contain the 5 day weather forecast. Within this row will be one column each per day. So there will be five small columns within this row. -->
-                    <!--I might use jQuery to make a loop to pull from the data and generate the columns... If I can figure this out-->
+                    
                 <div id="weeklyForecast" class="row">
+                    <!--This row will contain the 5 day weather forecast. Within this row will be one column each per day. So there will be five small columns within this row. -->
                 </div>
 
             </div>
