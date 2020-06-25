@@ -47,7 +47,8 @@ function listCities(city) {
 
 // Function to display current weather conditions:
 function currentForecast(response) {
-            $("#currentForecast").empty();
+
+            $("#currentForecast").empty(); // We empty the Div with the Id=currentForecast first. Otherwise the results from the last call of currentForecast will show.
             console.log("Current Weather Object: " + JSON.stringify(response));
 
             let date = new Date()
@@ -102,7 +103,7 @@ function currentForecast(response) {
 // In this section we will build the 5 day weather forecast section:
 function weeklyForecast(city) {
 
-        $("#weeklyForecast").empty();
+        $("#weeklyForecast").empty(); // We empty the Div with the Id=weeklyForecast first. Otherwise the results from the last call of currentForecast will show.
 
          // First we build the URL from which to recieve the 5 day weather forecast:
         var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
@@ -115,8 +116,6 @@ function weeklyForecast(city) {
         })
 
         .then(function (response){
-
-            console.log("First Object stored the the 5 Day Forecast Array: " + JSON.stringify(response.list[0]));
 
             // We create a loop to pull data from each day of the 5-day forecast and insert each day in its own individual card.
             // Start the loop at i=4 so that weather at 3 pm will be displayed. Loop in increments of 8 to allow 24 hours to pass between each forecast since each increment of i equals 3 hours since the response object displays weather every 3 hours.
