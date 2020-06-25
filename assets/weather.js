@@ -73,11 +73,13 @@ function currentForecast(response) {
             var currentHumidity = $("<p>").addClass("humidity card-text").text("Humidity: " + response.main.humidity + "%");
             var currentWind = $("<p>").addClass("wind card-text").text("Wind Speed: " + response.wind.speed + " MPH");;
             var currentUVIndex =$("<p>").addClass("uvindex card-text")
+            var currentPrecip = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png")
 
             //Append the elements together and join them to the Webpage:
             $("#currentForecast").append(currentCard);
             $(currentCard).append(currentCardBody);
             $(currentCardBody).append(currentCity, currentTemp, currentHumidity, currentWind, currentUVIndex);
+            $(currentCity).append(currentPrecip);
   
             // Since the UV index isn't in the object, we have to call it separately:
             let lat = response.coord.lat;
