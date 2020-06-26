@@ -8,7 +8,7 @@ var cityName= "";
 $("#searchBtn").on("click", function(){
 
             //This code makes the forecast header visible:
-            $("#fiveDayHeader").addClass('show');
+            $("#fiveDayHeader").css("display","block");
 
             // Stores the city name that the user entered into a variable used to retrieve weather data for that particular city:
             cityName = $("#searchBar").val();
