@@ -2,7 +2,6 @@
 
 In this project we created a weather app that pulled from an external server containing weather data in order to show weather forecast for the user. The point of this project was to figure out how request information from external servers using their web api and then to turn it into a useful form. 
 
-NOTE: I AM NOT YET ABLE TO GET THE SEARCH BAR FUNCTION TO WORK.
 
 ### Prerequisites and Deployment
 
