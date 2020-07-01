@@ -4,7 +4,7 @@ function initPage() {
     var cityName= "";
 
     // For Local Storage:
-    let historyEl = $("#history") 
+    const historyEl = $("#history") 
     let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
     console.log("Search History: " + searchHistory);
 
@@ -61,16 +61,16 @@ function initPage() {
                 tempF = Math.floor(tempF)
                 
                 // Build the HTML elements that Weather API data will be hooked up to:
-                var currentCard = $("<div>").addClass("card");
-                var currentCardBody = $("<div>").addClass("card-body");
-                var currentCity = $("<h4>").addClass("city card-title").text(response.name + " (" + date.toLocaleDateString('en-US') + ")" );
-                var currentTemp = $("<p>").addClass("tempF card-text").text("Temperature (F): " + tempF);
-                var currentHumidity = $("<p>").addClass("humidity card-text").text("Humidity: " + response.main.humidity + "%");
-                var currentWind = $("<p>").addClass("wind card-text").text("Wind Speed: " + response.wind.speed + " MPH");;
-                var currentUVIndex =$("<p>").addClass("uvindex card-text")
+                const currentCard = $("<div>").addClass("card mt-4");
+                const currentCardBody = $("<div>").addClass("card-body");
+                const currentCity = $("<h4>").addClass("city card-title").text(response.name + " (" + date.toLocaleDateString('en-US') + ")" );
+                const currentTemp = $("<p>").addClass("tempF card-text").text("Temperature (F): " + tempF);
+                const currentHumidity = $("<p>").addClass("humidity card-text").text("Humidity: " + response.main.humidity + "%");
+                const currentWind = $("<p>").addClass("wind card-text").text("Wind Speed: " + response.wind.speed + " MPH");;
+                const currentUVIndex =$("<p>").addClass("uvindex card-text")
 
                 // Pull the icon for the particular weather pattern from the openweather server and hook to html element:
-                var currentPrecip = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png")
+                let currentPrecip = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png")
 
                 //Append the HTML elements together and join them to the Webpage:
                 $("#currentForecast").append(currentCard);
@@ -83,7 +83,7 @@ function initPage() {
                 let lon = response.coord.lon;
 
                 // URL used to retrieve the UV index for a particular longitude and latitude that corresponds to a particular city:
-                var queryUVURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
+                let queryUVURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lat + "&lon=" + lon;
                 console.log(" UV Index URL: " + queryUVURL);
                 
                 // Get the UV index data from the external server and turn it into an object that is usable by JavaScript.
@@ -110,7 +110,7 @@ function initPage() {
             $("#weeklyForecast").empty(); // We empty the Div with the Id=weeklyForecast first. Otherwise the results from the last call of weeklyForecast will show.
 
             // First we build the URL from which to recieve the 5 day weather forecast:
-            var fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
+            let fiveDayURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey;
             console.log("5 Day Forecast URL: " + fiveDayURL);
 
             // Now we do an Ajax call to turn the 5 day weather data into an object that can be used by the webpage.
@@ -123,21 +123,21 @@ function initPage() {
 
                 // We create a loop to pull data from each day of the 5-day forecast and insert each day in its own individual card and then display that data card.
                 // Start the loop at i=4 so that weather at 3 pm will be displayed. Loop in increments of 8 to allow 24 hours to pass between each forecast since each increment of i equals 3 hours since the response object displays weather every 3 hours.
-                for (var i = 4; i < response.list.length; i+=8) {
+                for (let i = 4; i < response.list.length; i+=8) {
 
-                    var currentDay=response.list[i];
+                    let currentDay=response.list[i];
                     console.log("5 Day Forecast: " + JSON.stringify(currentDay));
 
                     // Convert the date data into a format for display using the split function:
                     console.log("Unprocessed Date String: " + currentDay.dt_txt);
-                    var splitTheDateString = currentDay.dt_txt.split("-"); //Split the date string given in the server data at the points where there is a hyphen symbol.
-                    var removeTime = splitTheDateString[2].split(" "); // Go to the index in the array where the day and time are still combined and split that based on empty spaces.
-                    var day = removeTime[0]; //Get the string that contains the time value
-                    var month = splitTheDateString[1]; //Get the string that contains the month value
-                    var year = splitTheDateString[0]; //Get the string that contains the year
+                    const splitTheDateString = currentDay.dt_txt.split("-"); //Split the date string given in the server data at the points where there is a hyphen symbol.
+                    const removeTime = splitTheDateString[2].split(" "); // Go to the index in the array where the day and time are still combined and split that based on empty spaces.
+                    const day = removeTime[0]; //Get the string that contains the time value
+                    const month = splitTheDateString[1]; //Get the string that contains the month value
+                    const year = splitTheDateString[0]; //Get the string that contains the year
 
                     // Combine the variables into a reformatted date for display:
-                    var formattedDate = month + "/" + day + "/" + year;
+                    const formattedDate = month + "/" + day + "/" + year;
                     console.log("Processed Date String: " + formattedDate);
                     
                     // get the temperature in kelvin and convert to fahrenheit:
@@ -145,11 +145,11 @@ function initPage() {
                     tempF = Math.floor(fiveDayTemp);
 
                     // Generate the cards for each day and display the weather data for the corresponding day:
-                    var currentCard = $("<div>").addClass("card");
-                    var currentCardBody = $("<div>").addClass("card-body");
-                    var currentDate = $("<h4>").addClass("card-title").text(formattedDate);
-                    var currentTemp = $("<p>").addClass("card-text").text("Temp: " + tempF + " F");
-                    var currentHumidity = $("<p>").addClass("card-text").text("Humidity: " + currentDay.main.humidity + "%");
+                    const currentCard = $("<div>").addClass("card mr-2 mb-3 bg-primary text-white");
+                    const currentCardBody = $("<div>").addClass("card-body");
+                    const currentDate = $("<h4>").addClass("card-title").css({"font-size": "20px", "text-align": "center"}).text(formattedDate);
+                    const currentTemp = $("<p>").addClass("card-text").text("Temp: " + tempF + " F");
+                    const currentHumidity = $("<p>").addClass("card-text").text("Humidity: " + currentDay.main.humidity + "%");
 
                     // Pull the icon for the particular weather pattern from the openweather server and hook to html element:
                     var currentPrecip = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + currentDay.weather[0].icon + "@2x.png")
