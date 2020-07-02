@@ -2,6 +2,7 @@
 
 In this project we created a weather app that pulled from an external server containing weather data in order to show weather forecast for the user. The point of this project was to figure out how request information from external servers using their web api and then to turn it into a useful form. 
 
+[View Deployed Project Here](https://lamcnguyen89.github.io/Weather-Dashboard/)
 
 ### Prerequisites and Deployment
 
